@@ -6,6 +6,7 @@ import FormattedDate from "./FormattedDate";
 
 export default function Weather(props) {
   const [weatherInfo, setWeatherInfo] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     setWeatherInfo({
@@ -21,6 +22,22 @@ export default function Weather(props) {
     });
   }
 
+  function search() {
+    const apiKey = "coe6e57341e6f0t6a5bd2ccbd4a22e31";
+    let unit = "metric";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function updateCity(event) {
+    setCity(event.target.value);
+  }
+
   if (weatherInfo.ready) {
     return (
       <div className="Weather">
@@ -32,7 +49,7 @@ export default function Weather(props) {
             </p>
           </div>
           <div className="col-7">
-            <form className="search-form">
+            <form className="search-form" onSubmit={handleSubmit}>
               <div className="row heading">
                 <div className="col-8">
                   <input
@@ -40,6 +57,7 @@ export default function Weather(props) {
                     name="search-city"
                     className="form-control"
                     placeholder="Enter a city ..."
+                    onChange={updateCity}
                   />
                 </div>
                 <div className="col-2">
@@ -83,10 +101,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "coe6e57341e6f0t6a5bd2ccbd4a22e31";
-    let unit = "metric";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=${unit}`;
-    axios.get(apiUrl).then(handleResponse);
+    search();
     return (
       <FallingLines
         color="#AD6CDA"
