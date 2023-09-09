@@ -1,0 +1,68 @@
+.Weather {
+  background-color: #fff;
+  border: 1px solid rgba(57, 93, 130, 0.6);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px rgba(101, 155, 209, 0.7);
+}
+
+.Weather h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+}
+
+.Weather h3 {
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+.Weather p,
+ul {
+  list-style: none;
+  padding: 0;
+  color: #727272;
+  font-size: 18px;
+  font-family: "Playfair", serif;
+}
+
+.Weather .overview {
+  margin: 15px 0;
+}
+
+.Weather .description {
+  padding-top: 8px;
+}
+
+.Weather img {
+  margin-right: 5px;
+  width: 90px;
+  height: 90px;
+}
+
+.Weather strong {
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 2;
+}
+
+.Weather .units {
+  position: relative;
+  font-size: 16px;
+  top: -22px;
+}
+
+.Weather button {
+  background-color: #92d2f7;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  transition: all 200em ease-in-out;
+  box-shadow: 5px 5px 10px rgba(85, 133, 181, 0.6);
+}
+
+.Weather button:hover {
+  background: #3c799c;
+  cursor: pointer;
+}

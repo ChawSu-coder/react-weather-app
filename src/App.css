@@ -1,0 +1,14 @@
+.App {
+  max-width: 600px;
+  margin: 100px auto;
+}
+
+.App footer {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+body {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/086/865/original/bluesky.jpeg?1687600478");
+  background-size: contain;
+}
