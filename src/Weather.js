@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
 import { FallingLines } from "react-loader-spinner";
+import FormattedDate from "./FormattedDate";
 
 export default function Weather(props) {
   const [weatherInfo, setWeatherInfo] = useState({ ready: false });
@@ -10,7 +11,7 @@ export default function Weather(props) {
     setWeatherInfo({
       ready: true,
       city: response.data.city,
-      date: "Sunday, 10:00",
+      date: new Date(response.data.time * 1000),
       temperature: response.data.temperature.current,
       humidity: response.data.temperature.humidity,
       wind: response.data.wind.speed,
@@ -26,7 +27,9 @@ export default function Weather(props) {
         <div className="row">
           <div className="col-5">
             <h1>{weatherInfo.city}</h1>
-            <p>{weatherInfo.date}</p>
+            <p>
+              <FormattedDate date={weatherInfo.date} />
+            </p>
           </div>
           <div className="col-7">
             <form className="search-form">
@@ -84,11 +87,13 @@ export default function Weather(props) {
     let unit = "metric";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=${unit}`;
     axios.get(apiUrl).then(handleResponse);
-    <FallingLines
-      color="#4fa94d"
-      width="100"
-      visible={true}
-      ariaLabel="falling-lines-loading"
-    />;
+    return (
+      <FallingLines
+        color="#AD6CDA"
+        width="100"
+        visible={true}
+        ariaLabel="falling-lines-loading"
+      />
+    );
   }
 }
