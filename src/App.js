@@ -13,6 +13,7 @@ export default function App() {
             target="_blank"
             alt="github link"
             rel="noreferrer"
+            className="text-decoration-none"
           >
             Khin Chaw Su Han
           </a>{" "}
@@ -22,6 +23,7 @@ export default function App() {
             target="_blank"
             alt="github link"
             rel="noreferrer"
+            className="text-decoration-none"
           >
             open-sourced on GitHub
           </a>
