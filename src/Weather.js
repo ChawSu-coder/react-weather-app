@@ -3,6 +3,7 @@ import "./Weather.css";
 import axios from "axios";
 import { FallingLines } from "react-loader-spinner";
 import FormattedDate from "./FormattedDate";
+import WeatherTemperature from "./WeatherTemperature";
 
 export default function Weather(props) {
   const [weatherInfo, setWeatherInfo] = useState({ ready: false });
@@ -91,8 +92,7 @@ export default function Weather(props) {
                 id="icon"
               />
               <div>
-                <strong>{Math.round(weatherInfo.temperature)}</strong>
-                <span className="units">°C | °F</span>
+                <WeatherTemperature celsius={weatherInfo.temperature} />
               </div>
             </div>
             <h3>{weatherInfo.description}</h3>
