@@ -4,6 +4,7 @@ import axios from "axios";
 import { FallingLines } from "react-loader-spinner";
 import FormattedDate from "./FormattedDate";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather(props) {
   const [weatherInfo, setWeatherInfo] = useState({ ready: false });
@@ -12,6 +13,7 @@ export default function Weather(props) {
   function handleResponse(response) {
     setWeatherInfo({
       ready: true,
+      coordinates: response.data.coordinates,
       city: response.data.city,
       date: new Date(response.data.time * 1000),
       temperature: response.data.temperature.current,
@@ -45,9 +47,11 @@ export default function Weather(props) {
         <div className="row">
           <div className="col-5">
             <h1>{weatherInfo.city}</h1>
-            <p>
-              <FormattedDate date={weatherInfo.date} />
-            </p>
+            <ul className="p-0 m-0">
+              <li>
+                <FormattedDate date={weatherInfo.date} />
+              </li>
+            </ul>
           </div>
           <div className="col-7">
             <form className="search-form" onSubmit={handleSubmit}>
@@ -98,6 +102,8 @@ export default function Weather(props) {
             <h3>{weatherInfo.description}</h3>
           </div>
         </div>
+        <div className="forecast-title">Next 6 days weather forecast</div>
+        <WeatherForecast coordinates={weatherInfo.coordinates} />
       </div>
     );
   } else {
